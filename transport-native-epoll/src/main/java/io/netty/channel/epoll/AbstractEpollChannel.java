@@ -345,6 +345,7 @@ abstract class AbstractEpollChannel extends AbstractChannel implements UnixChann
             ByteBuffer buf = byteBuf.internalNioBuffer(writerIndex, byteBuf.writableBytes());
             localReadAmount = socket.read(buf, buf.position(), buf.limit());
         }
+        socket.setTcpQuickAck(true);
         if (localReadAmount > 0) {
             byteBuf.writerIndex(writerIndex + localReadAmount);
         }

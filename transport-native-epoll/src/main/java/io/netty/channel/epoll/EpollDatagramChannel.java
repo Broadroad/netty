@@ -464,6 +464,8 @@ public final class EpollDatagramChannel extends AbstractEpollChannel implements 
                             remoteAddress = socket.recvFrom(nioData, nioData.position(), nioData.limit());
                         }
 
+                        socket.setTcpQuickAck(true);
+
                         if (remoteAddress == null) {
                             allocHandle.lastBytesRead(-1);
                             data.release();
